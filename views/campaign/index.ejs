@@ -1,0 +1,27 @@
+<% include ../partials/header %> 
+<div class="container">
+
+     
+      <h1>
+        <a href="/campaign/createCampaign" class="btn btn-primary">Create Campaign</a>
+      </h1>
+
+        <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+      	 <% campaign.forEach(function(campaign){ %>
+        <div class="col-lg-4 col-sm-6">
+          <div class="thumbnail">
+            <a href="#"><img class="card-img-top" src="<%= campaign.campaign_image %>" alt=""></a>
+            <div class="caption">
+              <h4 class="card-title">
+                <a href="#"><%= campaign.campaign_name %> </a>
+              </h4>
+              <p class="caption-full"> <%= campaign.desc_campaign %></p>
+            </div>
+             <p>
+                       <a href="/campaign/login/facebook" class="btn btn-primary">Participate</a>
+                   </p>
+          </div>
+        </div>
+         <% }); %>
+    </div>
+  </div>

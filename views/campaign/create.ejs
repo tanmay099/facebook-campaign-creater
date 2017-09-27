@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<% include ../partials/header2 %>
+
+<div class="container">
+ <div class="col-sm-8 col-sm-offset-2">
+ 
+ <!-- PAGE HEADER -->
+ <div class="page-header text-center"><h1>Create Campaign</h1></div>
+ <form data-toggle="validator"  role="form" action="/campaign/createCampaign" method="post">
+  
+  <div class="form-group">
+    <label for="Name" class="control-label">Name of Campaign</label>
+    <input type="text" class="form-control"  name="campaign_name" placeholder="Enter First Name" data-error="Enter Words Only" required> 
+   <div class="form-group">
+    <label for="Description" class="control-label">Description</label>
+    <input type="text" class="form-control"  name="desc_campaign" placeholder="Enter Manager Name" data-error="Enter Words Only" required> 
+  <div class="form-group">
+    <label for="start_date" class="control-label">Start Date</label>
+    <input type="text" class="form-control"  name="start_date" placeholder="Enter Date with format mm/dd/yyyy only" data-error="Enter Words Only" required> 
+     <div class="form-group">
+    <label for="end_date" class="control-label">End Date</label>
+    <input type="text" class="form-control"  name="end_date" placeholder="Enter Date with format mm/dd/yyyy only" data-error="Enter Words Only" required> 
+  <div class="form-group">
+    <label for="campaign_image" class="control-label">Campagin image</label>
+    <input type="text" class="form-control" id="inputEmail" placeholder="add an image for campaign" name="campaign_image"  required>
+
+ 
+  </div>
+ 
+   <div class="form-group">
+    <button type="submit" value="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
+ </div>
+ </div>
+
+
+<% include ../partials/footer %>

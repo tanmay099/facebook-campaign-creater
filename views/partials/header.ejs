@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/stylesheets/main.css">
+	<script src=https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js></script>
+
+		<title>FamousEnuf-app</title>
+
+	</head>
+	 <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-light" style="background-color: #e3f2fd;"">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">FamousEnuf</a>
+            </div>
+            <div class="collapse navbar-collapse">
+    
+                <ul class="nav navbar-nav navbar-right">
+                        <li><form class="form-inline my-2 my-lg-0" method="get" action="/campaign/users">
+      <input class="form-control mr-sm-2" type="text" name="name" placeholder="type name of user">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form></li>
+                    <% if(!currentUser){ %>
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/register">Sign Up</a></li>
+                    <% } else { %>
+                        <li><a href="#">Signed In As <%= currentUser.username %></a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        
+        <% if(error && error.length > 0){ %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } %>
+        <% if(success && success.length > 0){ %>
+            <div class="alert alert-success" role="alert">
+                <%= success %>
+            </div>
+        <% } %>
+    </div>
+
+	<body ng-app="myapp" -default>

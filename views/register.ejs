@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<% include ./partials/header2 %> 
+<body ng-controller="test">
+<div class="container">
+ <div class="col-sm-8 col-sm-offset-2">
+ 
+ <!-- PAGE HEADER -->
+ <div class="page-header text-center"><h1>SIGN-UP</h1></div>
+ <form data-toggle="validator"  role="form" action="/register" method="post">
+  
+  <div class="form-group">
+    <label for="Brand Name" class="control-label">First Name</label>
+    <input type="text" class="form-control"  name="brand_name" placeholder="Enter First Name" required> 
+   <div class="form-group">
+    <label for="Account Manager Name" class="control-label">Account Manager Name</label>
+    <input type="text" class="form-control"  name="username" placeholder="Enter Manager Name" data-error="Enter Words Only" required> 
+  <div class="form-group">
+    <label for="Mobile" class="control-label">Mobile Number</label>
+    <input type="number" class="form-control"  name="phone_num" placeholder="Enter Mobile Number"  required> 
+     <div class="form-group">
+    <label for="logo" class="control-label">Brand Logo</label>
+    <input type="text" class="form-control"  name="brand_logo" placeholder="Enter Brand logo Image Url with .jpg or other extension" data-error="Enter Words Only" required> 
+  <div class="form-group">
+    <label for="inputEmail" class="control-label">Email</label>
+    <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email"  required>
+
+    <div class="help-block with-errors"></div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword" class="control-label">Password</label>
+    <div class="form-inline row"> 
+      <div class="form-group col-sm-6">
+        <input type="password" name="password" 
+        ng-model="password" 
+      ng-pattern="/^(?=.*[!@#$^&*])[a-zA-Z0-9!@#$%^&*]{8,12}$/" 
+        required class="form-control"  
+        placeholder="Password" 
+        ng-init="password_error_show = 0"
+         ng-focus="password_error_show = 1"
+        ng-change="password_error_show = password_error_show +1;changepassword()">
+        <div class="help-block" ng-show="!passValidation && password_error_show > 0">
+      <div> PLease enter your password</div>
+      <div> password must alphanuamric with speacial charcters and should be  8 to 12 characters</div>
+        </div>
+   
+      </div>
+      <div class="form-group col-sm-6">
+        <input type="password" class="form-control" name="cpassword"    placeholder="Confirm-Password"  ng-model="cpassword" ng-init= "cpassword_error_show = 0" ng-focus="cpassword_error_show = 1" ng-change="cpassword_error_show = cpassword_error_show + 1;changepassword()" required>
+        <span ng-show="cpassword_error_show > 0 && password !== cpassword">Passwword Mismatch</span>
+        <span ng-show="cpassword_error_show > 0 && password === cpassword">Passwword match</span>
+        <span ng-show="cpassword_error_show > 0 && password === cpassword && passValidation">correct match and validate</span>
+
+        <div class="help-block" ng-messages="add_user_form.confirm_password.$error"
+             ng-show="add_user_form.confirm_password.$error.$dirty || add_user_form.confirm_password.$touched">
+            <div ng-messages="myPwdInvalid">Password do not match</div></div>
+      </div>
+    </div>
+  </div>
+  
+   <div class="form-group">
+    <button type="submit" value="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
+ </div>
+ </div>
+
+<script>
+var app=angular.module('myApp' ,[]);
+app.controller("test", function($scope){
+$scope.passValidation = false;
+$scope.changepassword = function()
+{
+  var regxp = /^(?=.*[!@#$^&*])[a-zA-Z0-9!@#$%^&*]{8,12}$/;
+  if (regxp.test($scope.password)== false)
+  {
+    $scope.passValidation = false;
+  }
+  else
+  {
+    $scope.passValidation = true;
+  }
+};
+});
+</script>
+<% include ./partials/footer %>
